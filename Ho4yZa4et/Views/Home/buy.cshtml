@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Ho4yZa4et.Models.Product>
+
+
+@{
+    ViewBag.Title = "buy";
+}
+
+<h2>Каво</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descrip)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.price)
+    </td>
+    <th>
+        @Html.DisplayFor(model => item.descrip)
+    </th>
+    <td>
+        @Html.ActionLink("Купить", "BUY1", new { id = item.id })
+    </td>
+</tr>
+    }
+
+
+</table>
+

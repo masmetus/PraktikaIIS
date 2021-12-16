@@ -1,0 +1,29 @@
+﻿@model Ho4yZa4et.Models.Product
+
+@{
+    ViewBag.Title = "BUY";
+}
+
+<h2>BUY</h2>
+
+<h2>Оплатить?</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4></h4>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Да" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
