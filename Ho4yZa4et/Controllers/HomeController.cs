@@ -1,4 +1,4 @@
-﻿using Ho4yZa4et.Models;
+using Ho4yZa4et.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,13 +11,13 @@ namespace Ho4yZa4et.Controllers
 {
     public class HomeController : Controller
     {
-        List<Product> products = new List<Product> { new Product(1, "Айфон", "Айфон шмайфон даааа", 22800), new Product(2, "Не айфон", "Каво", 11400) };
+        List<Product> products = new List<Product> { new Product(1, "Айфон", "Айфон шмайфон даааа", 22800), new Product(2, "Не айфон", "Каво", 11400), new Product(3, "Сяоми", "Топ за свои деньги", 111400) };
 
         private static string GET(string url, string Data)
         {
-            System.Net.WebRequest request = System.Net.WebRequest.Create(url + "?" + Data);
-            System.Net.WebResponse response = request.GetResponse();
-            System.IO.Stream stream = response.GetResponseStream();
+            System.Net.WebRequest req = System.Net.WebRequest.Create(url + "?" + Data);
+            System.Net.WebResponse resp = req.GetResponse();
+            System.IO.Stream stream = resp.GetResponseStream();
             System.IO.StreamReader sr = new System.IO.StreamReader(stream);
             string Out = sr.ReadToEnd();
             sr.Close();
@@ -47,8 +47,8 @@ namespace Ho4yZa4et.Controllers
         {
             dta data = new dta();
             String status = GET("https://pay.pay-ok.org/demo/", "REQ={\"PAY_ID\":\"" + id + "\",\"PAY_ACTION\":\"GET_INFO\"}");
-            int firstIndex = status.IndexOf("OD_STATUS")+12;
-            int secondIndex = status.IndexOf("OD_PARAMS")-3;
+            int firstIndex = status.IndexOf("OD_STATUS")+ 12;
+            int secondIndex = status.IndexOf("OD_PARAMS")- 3;
             data.status = status.Substring(firstIndex, secondIndex - firstIndex);
             firstIndex = status.IndexOf("processedAt") + 16;
             secondIndex = status.IndexOf("fp") - 5;
@@ -97,7 +97,7 @@ namespace Ho4yZa4et.Controllers
                     URL1 = URL.Substring(firstIndex, secondIndex - firstIndex);
                     Process.Start(URL1);
                     Thread.Sleep(4);                  
-                    return RedirectToAction("status/" + idProduct);               
+                    return RedirectToAction("paystatus/" + idProduct);               
                 }
             }
             return View("Payment");
@@ -113,16 +113,16 @@ namespace Ho4yZa4et.Controllers
             int firstIndex = URL.IndexOf("status") + 9;
             int secondIndex = URL.IndexOf("startAmount") - 3;
             URL1 = URL.Substring(firstIndex, secondIndex - firstIndex);
-            if (URL1.Equals(1))
+            if (URL1.Equals("1"))
             {
                 dta.id = Guid.NewGuid();
                 dta.action = "REG";
                 dta.datte = DateTime.Now.ToString();
-                dta.email = "some email";
+                dta.email = "Kavo@mail.ua";
                 firstIndex = URL.IndexOf("с") + 2;
                 secondIndex = URL.Length - 4;
                 
-                dta.ls = 23;
+                dta.ls = 43;
                 firstIndex = URL.IndexOf("paidAmount") + 13;
                 secondIndex = URL.IndexOf("order_id") - 3;
                 dta.itog = Int32.Parse(URL.Substring(firstIndex, secondIndex - firstIndex));
