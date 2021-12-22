@@ -11,7 +11,7 @@ namespace Ho4yZa4et.Controllers
 {
     public class HomeController : Controller
     {
-        List<Product> products = new List<Product> { new Product(1, "Айфон", "Айфон шмайфон даааа", 22800), new Product(2, "Не айфон", "Каво", 11400), new Product(3, "Сяоми", "Топ за свои деньги", 111400) };
+        List<Product> products = new List<Product> { new Product(1, "Айфон", "Айфон шмайфон даааа", 22800), new Product(2, "Не айфон", "Каво", 11400), new Product(3, "Сяоми", "Топ за свои деньги", 111400), new Product(4, "ABOBA", "Пажилая ветка сакуры", 666600), new Product(5, "Android приложение", "Размещать только в Гугл Плэээ эжжжи", 324000) };
 
         private static string GET(string url, string Data)
         {
